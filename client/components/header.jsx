@@ -3,7 +3,7 @@ import React from 'react';
 export default class Header extends React.Component {
   render() {
     return (
-      <nav className = 'navbar navbar-expand-lg navbar-light bg-light shadow fixed-top'>
+      <nav className = 'navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top'>
         <div>
           <a className = 'navbar-brand logo' href="#">
             <span>
