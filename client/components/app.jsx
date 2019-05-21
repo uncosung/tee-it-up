@@ -11,26 +11,29 @@ export default class App extends React.Component {
       view: {
         name: 'catalog',
         params: {}
-      }
+      },
+      cart: []
     };
     this.setView = this.setView.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
   componentDidMount() {
     this.getProducts();
+    this.getCartItems();
   }
   render() {
     if (this.state.view.name === 'catalog') {
       return (
         <div className = 'col-12'>
-          <Header/>
+          <Header cartItemCount = {this.state.cart.length}/>
           <ProductList product={this.state.products} setView = {this.setView}/>
         </div>
       );
     } else {
       return (
         <div className = 'col-12'>
-          <Header/>
-          <ProductDetails backToList = {this.backToList} key={this.state.view.id} params={this.state.view.params} setView = {this.setView}/>
+          <Header cartItemCount = {this.state.cart.length}/>
+          <ProductDetails addToCart = {this.addToCart} backToList = {this.backToList} key={this.state.view.id} params={this.state.view.params} setView = {this.setView}/>
         </div>
       );
     }
@@ -52,6 +55,30 @@ export default class App extends React.Component {
         params: params
       }
     });
+  }
+  getCartItems() {
+    fetch('api/cart.php')
+      .then(res => res.json())
+      .then(cart => {
+        this.setState({
+          cart: cart
+        });
+      });
+  }
+  addToCart(product) {
+    fetch('api/cart.php', {
+      method: 'POST',
+      body: JSON.stringify(product),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(product => {
+        this.setState({
+          cart: [...this.state.cart, product]
+        });
+      });
   }
 
 }
