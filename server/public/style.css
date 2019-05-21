@@ -8,9 +8,10 @@
 }
 .product-list {
     margin-top: 10vh;
+    justify-content: center
 }
 .product-item {
-    float: left;
+    display: inline-block;
     height: 50vh;
     overflow: hidden;
     transition: all 1s ease 0s;
@@ -36,4 +37,13 @@
     .product-item{
         height: 80vh;
     };
+}
+.product-details {
+    margin-top: 10vh;
+}
+.product-details-top {
+    margin-top: 3vh;
+}
+.back-button {
+    margin-top: 1vh;
 }
