@@ -47,3 +47,12 @@
 .back-button {
     margin-top: 1vh;
 }
+.cart-button {
+ 
+}
+.cart-container {
+    position: absolute;
+    right: 3vw;
+    color: white;
+    display: flex;
+}

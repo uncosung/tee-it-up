@@ -7,6 +7,7 @@ class ProductDetails extends React.Component {
       product: {}
     };
     this.backToList = this.backToList.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
   render() {
     if (this.state.product) {
@@ -27,6 +28,7 @@ class ProductDetails extends React.Component {
               <h3 className = 'card-title product-details-name '>{name}</h3>
               <h4 className = 'product-details-price '>${price}</h4>
               <div className = 'product-details-short '>{shortDescription}</div>
+              <button onClick = {this.addToCart} className = 'cart-button btn-primary my-5'>Add to Cart</button>
             </div>
           </div>
           <div className = 'product-details-bottom card-body'>
@@ -52,6 +54,9 @@ class ProductDetails extends React.Component {
     }, () => {
       this.props.setView('catalog', {});
     });
+  }
+  addToCart() {
+    this.props.addToCart(this.state.product);
   }
 }
 export default ProductDetails;
