@@ -12,7 +12,7 @@ export default class Header extends React.Component {
                     Wicked Sales
           </a>
         </div>
-        <div className = 'cart-container'>
+        <div onClick = {() => { this.props.setView('cart', {}); }}className = 'cart-container'>
           <div className = 'mx-1'>{this.props.cartItemCount} items</div>
           <span>
             <i className="cart fas fa-shopping-cart"></i>

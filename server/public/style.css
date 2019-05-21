@@ -41,18 +41,21 @@
 .product-details {
     margin-top: 10vh;
 }
-.product-details-top {
+.product-details-top, .cart-item-top {
     margin-top: 3vh;
 }
 .back-button {
     margin-top: 1vh;
-}
-.cart-button {
- 
 }
 .cart-container {
     position: absolute;
     right: 3vw;
     color: white;
     display: flex;
+}
+.cart-list {
+    margin-top: 10vh;
+}
+.cart-list h2 {
+    margin-top: 3vh;
 }
