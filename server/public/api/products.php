@@ -7,7 +7,7 @@
     throw new Exception(mysqli_connect_error($conn));
     exit();
   }
-  $query = "SELECT `id`, `name`, `price`, `image`, `shortDescription` FROM `wicked-sales-products`";
+  $query = "SELECT * FROM `wicked-sales-products`";
   $result = mysqli_query($conn, $query);
   if(!$result) {
     throw new Exception (mysqli_error($conn));
