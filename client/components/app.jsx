@@ -3,6 +3,7 @@ import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cartSummary';
+import CheckoutForm from './checkoutForm';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
   }
   componentDidMount() {
     this.getProducts();
@@ -27,7 +29,7 @@ export default class App extends React.Component {
       return (
         <div className = 'col-12'>
           <Header setView = {this.setView} cartItemCount = {this.state.cart.length}/>
-          <ProductList product={this.state.products} setView = {this.setView}/>
+          <ProductList addToCart = {this.addToCart} product={this.state.products} setView = {this.setView}/>
         </div>
       );
     } else if (this.state.view.name === 'cart') {
@@ -35,6 +37,13 @@ export default class App extends React.Component {
         <div className = 'col-12'>
           <Header setView = {this.setView} cartItemCount = {this.state.cart.length}/>
           <CartSummary setView = {this.setView} cart = {this.state.cart}/>
+        </div>
+      );
+    } else if (this.state.view.name === 'checkout') {
+      return (
+        <div className = 'col-12'>
+          <Header setView = {this.setView} cartItemCount = {this.state.cart.length}/>
+          <CheckoutForm cart = {this.state.cart} handleSubmit = {this.placeOrder}/>
         </div>
       );
     } else {
@@ -89,4 +98,29 @@ export default class App extends React.Component {
       });
   }
 
+  placeOrder(customer) {
+    const buyer = {
+      name: customer.name,
+      creditCard: customer.creditCard,
+      shippingAddress: customer.shippingAddress,
+      cart: this.state.cart
+    };
+    fetch('api/orders.php', {
+      method: 'POST',
+      body: JSON.stringify(buyer),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(() => {
+        this.setState({
+          cart: [],
+          view: {
+            name: 'catalog',
+            params: {}
+          }
+        });
+      });
+  }
 }

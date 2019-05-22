@@ -1,6 +1,10 @@
 import React from 'react';
 
 export default class ProductListItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.addToCart = this.addToCart.bind(this);
+  }
   render() {
     const productId = this.props.product.id;
     const imgUrl = this.props.product.image;
@@ -16,8 +20,13 @@ export default class ProductListItem extends React.Component {
           <h3 className = 'card-title'>{name}</h3>
           <div>${price}</div>
           <div>{shortDescription}</div>
+          <button onClick = {this.addToCart} className = 'col-12 list-button btn btn-secondary'>Add to Cart</button>
         </div>
       </div>
     );
+  }
+  addToCart(event) {
+    event.stopPropagation();
+    this.props.addToCart(this.props.product);
   }
 }

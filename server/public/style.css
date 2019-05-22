@@ -1,6 +1,5 @@
 
 #root {
-    height: 125vh;
     display: flex;
 }
 .logo {
@@ -15,7 +14,9 @@
     height: 50vh;
     overflow: hidden;
     transition: all 1s ease 0s;
-
+}
+.list-button {
+    margin-top: 2vh;
 }
 .product-img {
     width: auto;
@@ -58,4 +59,20 @@
 }
 .cart-list h2 {
     margin-top: 3vh;
+}
+.shipping{
+    height: 40%;
+}
+.checkout-top {
+    margin-top: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.submitRow {
+    margin-top: 5vh;
+}
+.placeOrder {
+    position: absolute;
+    right: 0;
 }
