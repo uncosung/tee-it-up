@@ -4,17 +4,18 @@
   require_once 'db_connection.php';
   set_exception_handler('error_handler');
   if (!$conn) {
-    throw new Exception('Error: ' . mysqli_connect_error($conn));
+    throw new Exception(mysqli_connect_error($conn));
+    exit();
   }
   $query = "SELECT `id`, `name`, `price`, `image`, `shortDescription` FROM `wicked-sales-products`";
   $result = mysqli_query($conn, $query);
   if(!$result) {
-    print('Error: ' . mysqli_error($conn));
+    throw new Exception (mysqli_error($conn));
     exit();
   }
   $output = [];
   if (mysqli_num_rows($result) === 0) {
-    print('No data available');
+    print([]);
     exit();
   }
   while ($row = mysqli_fetch_assoc($result)){
