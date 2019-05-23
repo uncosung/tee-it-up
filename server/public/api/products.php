@@ -9,11 +9,17 @@
     exit();
   }
   if (empty($_GET['id'])){
-  $query = "SELECT * FROM `wicked-sales-products`";
+  $whereClause = '';
   }
   else {
-  $query = "SELECT * FROM `wicked-sales-products` WHERE `id` = {$_GET['id']}";
+    if (is_numeric($_GET['id'])){
+      $whereClause = " WHERE `id` = {$_GET['id']}";
+    }
+    else {
+      throw new Exception ('id needs to be a number');
+    }
   }
+  $query = 'SELECT * FROM `wicked-sales-products`' . $whereClause;
   $result = mysqli_query($conn, $query);
   if(!$result) {
     throw new Exception (mysqli_error($conn));
