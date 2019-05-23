@@ -43,7 +43,7 @@ export default class App extends React.Component {
       return (
         <div className = 'col-12'>
           <Header setView = {this.setView} cartItemCount = {this.state.cart.length}/>
-          <CheckoutForm cart = {this.state.cart} handleSubmit = {this.placeOrder}/>
+          <CheckoutForm setView={this.setView} cart = {this.state.cart} handleSubmit = {this.placeOrder}/>
         </div>
       );
     } else {

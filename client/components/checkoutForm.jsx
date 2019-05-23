@@ -10,6 +10,7 @@ class CheckoutForm extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.backToShop = this.backToShop.bind(this);
   }
 
   render() {
@@ -39,7 +40,7 @@ class CheckoutForm extends React.Component {
               <textarea id = 'shippingAddress' className = 'col-12 form-control' type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
             </div>
             <div className = 'submitRow row'>
-              <div>{continueShopping}</div>
+              <div onClick={this.backToShop}>{continueShopping}</div>
               <button className = 'placeOrder btn btn-success' type='submit'>Place Order</button>
             </div>
           </form>
@@ -79,6 +80,9 @@ class CheckoutForm extends React.Component {
       creditCard: '',
       shippingAddress: ''
     });
+  }
+  backToShop() {
+    this.props.setView('catalog', {});
   }
 }
 export default CheckoutForm;
