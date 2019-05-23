@@ -5,6 +5,7 @@ class CartSummary extends React.Component {
   constructor(props) {
     super(props);
     this.backToList = this.backToList.bind(this);
+    this.checkout = this.checkout.bind(this);
   }
   render() {
     const cartItems = this.props.cart.map(item => {
@@ -26,8 +27,12 @@ class CartSummary extends React.Component {
         <h3>My Cart</h3>
         <div>{cartItems}</div>
         <h4 className = 'my-4'>Item Total ${totalPrice.toFixed(2)}</h4>
+        <button onClick={this.checkout} className = 'btn-success'>Checkout</button>
       </div>
     );
+  }
+  checkout() {
+    this.props.setView('checkout', {});
   }
   backToList() {
     this.props.setView('catalog', {});

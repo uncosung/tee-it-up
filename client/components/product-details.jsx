@@ -11,8 +11,9 @@ class ProductDetails extends React.Component {
   }
   render() {
     if (this.state.product) {
+      const product = this.state.product;
       const imgUrl = this.state.product.image;
-      const name = this.state.product.name;
+      const name = product.name;
       const price = parseFloat(this.state.product.price / 100).toFixed(2);
       const shortDescription = this.state.product.shortDescription;
       const longDescription = this.state.product.longDescription;
@@ -44,7 +45,7 @@ class ProductDetails extends React.Component {
       .then(res => res.json())
       .then(product => {
         this.setState({
-          product: product
+          product: product[0]
         });
       });
   }
