@@ -13,7 +13,6 @@ class CartSummary extends React.Component {
         <CartSummaryItem key = {item.id} item={item}/>
       );
     });
-    const catalog = '< Back to catalog';
     const priceArray = this.props.cart.map(item => {
       return (parseFloat(item.price) / 100).toFixed(2);
     });
@@ -21,15 +20,25 @@ class CartSummary extends React.Component {
     for (let i = 0; i < priceArray.length; i++) {
       totalPrice = totalPrice + parseFloat(priceArray[i]);
     }
-    return (
-      <div className = 'cart-list col-12'>
-        <div onClick = {this.backToList}>{catalog}</div>
-        <h3>My Cart</h3>
-        <div>{cartItems}</div>
-        <h4 className = 'my-4'>Item Total ${totalPrice.toFixed(2)}</h4>
-        <button onClick={this.checkout} className = 'btn-success'>Checkout</button>
-      </div>
-    );
+    if (this.props.cart.length === 0) {
+      return (
+        <div className = 'cart-list col-12'>
+          <button className = 'btn btn-primary' onClick = {this.backToList}>Back to catalog</button>
+          <h3>My Cart</h3>
+          <div>You have no items in your cart.</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className = 'cart-list col-12'>
+          <button className = 'btn btn-primary' onClick = {this.backToList}>Back to catalog</button>
+          <h3 className = 'mt-2'>My Cart</h3>
+          <div>{cartItems}</div>
+          <h4 className = 'my-4'>Item Total ${totalPrice.toFixed(2)}</h4>
+          <button onClick={this.checkout} className = 'mb-4 btn btn-success'>Checkout</button>
+        </div>
+      );
+    }
   }
   checkout() {
     this.props.setView('checkout', {});

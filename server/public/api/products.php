@@ -16,7 +16,7 @@
       $whereClause = " WHERE `id` = {$_GET['id']}";
     }
     else {
-      throw new Exception ('id needs to be a number');
+      throw new Exception ('ID needs to be a number');
     }
   }
   $query = 'SELECT * FROM `wicked-sales-products`' . $whereClause;
@@ -27,6 +27,9 @@
   }
   $output = [];
   if (mysqli_num_rows($result) === 0) {
+    if ($_GET['id']) {
+      throw new Exception ("Invalid ID : {$_GET['id']}");
+    }
     print([]);
     exit();
   }
