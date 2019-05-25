@@ -21,7 +21,6 @@ class CheckoutForm extends React.Component {
     for (let i = 0; i < priceArray.length; i++) {
       totalPrice = totalPrice + parseFloat(priceArray[i]);
     }
-    const continueShopping = '< Continue Shopping';
     return (
       <div className = 'col-12 my-5'>
         <div className = 'checkout-top offset-2 col-8 row'>
@@ -40,7 +39,7 @@ class CheckoutForm extends React.Component {
               <textarea id = 'shippingAddress' className = 'col-12 form-control' type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
             </div>
             <div className = 'submitRow row'>
-              <div onClick={this.backToShop}>{continueShopping}</div>
+              <button className = 'btn btn-primary' onClick = {this.backToShop}>Continue Shopping</button>
               <button className = 'placeOrder btn btn-success' type='submit'>Place Order</button>
             </div>
           </form>

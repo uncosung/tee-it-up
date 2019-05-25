@@ -17,10 +17,9 @@ class ProductDetails extends React.Component {
       const price = parseFloat(this.state.product.price / 100).toFixed(2);
       const shortDescription = this.state.product.shortDescription;
       const longDescription = this.state.product.longDescription;
-      const catalog = '< Back to catalog';
       return (
         <div className = 'product-details card col-md-12 col-12'>
-          <div onClick = {this.backToList} className = 'back-button'>{catalog}</div>
+          <button className = 'col-2 back-button btn btn-primary' onClick = {this.backToList}>Back to catalog</button>
           <div className = 'product-details-top row'>
             <div className = 'product-details-img-container col-6'>
               <img className = 'product-details-img col-12' src={imgUrl}></img>
@@ -29,7 +28,7 @@ class ProductDetails extends React.Component {
               <h3 className = 'card-title product-details-name '>{name}</h3>
               <h4 className = 'product-details-price '>${price}</h4>
               <div className = 'product-details-short '>{shortDescription}</div>
-              <button onClick = {this.addToCart} className = 'cart-button btn-primary my-5'>Add to Cart</button>
+              <button onClick = {this.addToCart} className = 'cart-button btn btn-primary my-5'>Add to Cart</button>
             </div>
           </div>
           <div className = 'product-details-bottom card-body'>
