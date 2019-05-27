@@ -50,7 +50,7 @@ export default class App extends React.Component {
       return (
         <div className = 'col-12'>
           <Header setView = {this.setView} cartItemCount = {this.state.cart.length}/>
-          <ProductDetails addToCart = {this.addToCart} backToList = {this.backToList} key={this.state.view.id} params={this.state.view.params} setView = {this.setView}/>
+          <ProductDetails addToCart = {this.addToCart} backToList = {this.backToList} key={this.state.view.params} params={this.state.view.params} setView = {this.setView}/>
         </div>
       );
     }

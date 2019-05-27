@@ -41,6 +41,7 @@
 }
 .product-details {
     margin-top: 10vh;
+    border: none;
 }
 .product-details-top, .cart-item-top {
     margin-top: 3vh;
@@ -75,4 +76,7 @@
 .placeOrder {
     position: absolute;
     right: 0;
+}
+.carousel button:before {
+    color: grey;
 }
