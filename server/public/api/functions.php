@@ -1,5 +1,4 @@
 <?php 
-    startup();
     function error_handler($error) {
         $output = [
             'success' => false,
