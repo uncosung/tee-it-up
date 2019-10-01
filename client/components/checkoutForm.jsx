@@ -6,6 +6,7 @@ class CheckoutForm extends React.Component {
     this.state = {
       name: '',
       creditCard: '',
+      creditCardCVV: '',
       shippingAddress: ''
     };
     this.handleChange = this.handleChange.bind(this);
@@ -30,10 +31,11 @@ class CheckoutForm extends React.Component {
         <div className = 'offset-2 col-8 form-group'>
           <form onSubmit = {this.handleSubmit}>
             <div className = 'input-group mb-3'>
-              <input id = 'name' className = 'col-12 form-control' type='text' placeholder = 'Name' onChange = {this.handleChange} value = {this.state.name}></input>
+              <input id = 'name' className = 'col-8 form-control' type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
             </div>
             <div className = 'input-group mb-3'>
-              <input id = 'creditCard' className = 'col-12 form-control' type='text' placeholder = 'Credit Card' onChange = {this.handleChange} value = {this.state.creditCard}></input>
+              <input id = 'creditCard' className = 'col-8 form-control' type='text' placeholder = 'Credit Card Number (DEMO PURPOSES ONLY)' onChange = {this.handleChange} value = {this.state.creditCard}></input>
+              <input id='creditCardCVV' className = 'offset-1 col-3 form-control' type='text' placeholder = 'CVV' onChange = {this.handleChange} value = {this.state.creditCardCVV}></input>
             </div>
             <div className = 'shipping input-group mb-3'>
               <textarea id = 'shippingAddress' className = 'col-12 form-control' type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
@@ -60,6 +62,11 @@ class CheckoutForm extends React.Component {
         creditCard: target.value
       });
     }
+    if (target.id === 'creditCardCVV') {
+      this.setState({
+        creditCardCVV: target.value
+      });
+    }
     if (target.id === 'shippingAddress') {
       this.setState({
         shippingAddress: target.value
@@ -71,6 +78,7 @@ class CheckoutForm extends React.Component {
     const order = {
       name: this.state.name,
       creditCard: this.state.creditCard,
+      creditCardCVV: this.state.creditCardCVV,
       shippingAddress: this.state.shippingAddress
     };
     this.props.handleSubmit(order);

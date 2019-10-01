@@ -2,11 +2,75 @@
 #root {
     display: flex;
 }
+.header {
+    height: 10vh;
+    background-color: #04054F;
+}
+.cartConfirmationContainer {
+    position: absolute;
+    top: 8vh;
+    right: 0;
+}
+.cartConfirmation, .cartConfirmationShow {
+    position: sticky;
+    top: 10px;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 15px;
+    z-index: 1000000;
+}
+.cartConfirmation {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2.5s, opacity 0.5s linear
+}
+.cartConfirmationShow{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s linear
+}
 .logo {
     left: 5vw;
 }
-.product-list {
+.logo i {
+   margin-right: 1vw; 
+}
+.hero {
+    position: relative;
     margin-top: 10vh;
+}
+.hero-image {
+    background-image: url('./images/golf-background.jpeg');
+    background-size: cover;
+    background-position: 85%;
+    height: 65vh;
+    width: 100%;
+    color: white;
+    display: block;
+    top: 60%;
+    left: 50%;
+    transform: translate (-50%, -50%);
+    font-size: 2.5rem;
+    line-height: 1;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    text-shadow: 2px 2px grey;
+}
+.hero-title {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+.hero-button {
+
+}
+.product-list {
+    padding-top: 10vh;  
     justify-content: center
 }
 .product-item {
@@ -54,6 +118,7 @@
     right: 3vw;
     color: white;
     display: flex;
+    cursor: pointer;
 }
 .cart-list {
     margin-top: 10vh;
@@ -79,4 +144,10 @@
 }
 .carousel button:before {
     color: grey;
+}
+.demo-end {
+    top: 25vh;
+}
+.reload-button {
+    margin-top: 10vh;
 }

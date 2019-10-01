@@ -3,13 +3,13 @@ import React from 'react';
 export default class Header extends React.Component {
   render() {
     return (
-      <nav className = 'navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top'>
+      <nav className = 'header navbar navbar-expand-lg navbar-dark shadow fixed-top'>
         <div>
           <a className = 'navbar-brand logo' href="#">
             <span>
-              <i className="far fa-angry"></i>
+              <i className="fas fa-golf-ball"></i>
             </span>
-                    Wicked Sales
+                    TEE IT UP!
           </a>
         </div>
         <div onClick = {() => { this.props.setView('cart', {}); }}className = 'cart-container'>
@@ -17,6 +17,9 @@ export default class Header extends React.Component {
           <span>
             <i className="cart fas fa-shopping-cart"></i>
           </span>
+          <div className="cartConfirmationContainer">
+            <div className={'cartConfirmation' + this.props.added}>Added to Cart</div>
+          </div>
         </div>
       </nav>
     );

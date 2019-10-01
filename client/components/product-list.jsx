@@ -8,7 +8,7 @@ export default class ProductList extends React.Component {
     });
 
     return (
-      <div className = 'col-12 product-list'>
+      <div ref={this.props.productListFocus} className = 'col-12 product-list'>
         <div className = 'row justify-content-center'>
           {products}
         </div>
