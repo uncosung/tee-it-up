@@ -4,6 +4,8 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cartSummary';
 import CheckoutForm from './checkoutForm';
+import Hero from './hero';
+import DemoEnd from './demoEnd';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -14,43 +16,62 @@ export default class App extends React.Component {
         name: 'catalog',
         params: {}
       },
-      cart: []
+      cart: [],
+      added: ''
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.productListFocus = React.createRef();
   }
   componentDidMount() {
     this.getProducts();
     this.getCartItems();
   }
+  componentDidUpdate() {
+    if (this.state.added) {
+      setTimeout(() => {
+        this.setState({
+          added: ''
+        });
+      }, 2000);
+    }
+  }
   render() {
     if (this.state.view.name === 'catalog') {
       return (
         <div className = 'col-12'>
-          <Header setView = {this.setView} cartItemCount = {this.state.cart.length}/>
-          <ProductList addToCart = {this.addToCart} product={this.state.products} setView = {this.setView}/>
+          <Header added={this.state.added} productListFocus = {this.productListFocus} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
+          <Hero productListFocus = {this.productListFocus}/>
+          <ProductList productListFocus = {this.productListFocus} addToCart = {this.addToCart} product={this.state.products} setView = {this.setView}/>
         </div>
       );
     } else if (this.state.view.name === 'cart') {
       return (
         <div className = 'col-12'>
-          <Header setView = {this.setView} cartItemCount = {this.state.cart.length}/>
+          <Header added={this.state.added} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
           <CartSummary setView = {this.setView} cart = {this.state.cart}/>
         </div>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
         <div className = 'col-12'>
-          <Header setView = {this.setView} cartItemCount = {this.state.cart.length}/>
+          <Header added={this.state.added} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
           <CheckoutForm setView={this.setView} cart = {this.state.cart} handleSubmit = {this.placeOrder}/>
+        </div>
+      );
+    } else if (this.state.view.name === 'demoEnd') {
+      return (
+        <div className = 'col-12'>
+          <Header added={this.state.added} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
+          <DemoEnd/>
         </div>
       );
     } else {
       return (
         <div className = 'col-12'>
-          <Header setView = {this.setView} cartItemCount = {this.state.cart.length}/>
-          <ProductDetails addToCart = {this.addToCart} backToList = {this.backToList} key={this.state.view.id} params={this.state.view.params} setView = {this.setView}/>
+          <Header added={this.state.added} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
+          <ProductDetails addToCart = {this.addToCart} backToList = {this.backToList} key={this.state.view.params} params={this.state.view.params} setView = {this.setView}/>
         </div>
       );
     }
@@ -93,7 +114,8 @@ export default class App extends React.Component {
       .then(res => res.json())
       .then(product => {
         this.setState({
-          cart: [...this.state.cart, product]
+          cart: [...this.state.cart, product],
+          added: 'Show'
         });
       });
   }
@@ -117,7 +139,7 @@ export default class App extends React.Component {
         this.setState({
           cart: [],
           view: {
-            name: 'catalog',
+            name: 'demoEnd',
             params: {}
           }
         });
