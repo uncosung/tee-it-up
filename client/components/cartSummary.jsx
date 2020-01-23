@@ -31,7 +31,7 @@ class CartSummary extends React.Component {
     } else {
       return (
         <div className = 'cart-list col-12'>
-          <button className = 'btn btn-primary' onClick = {this.backToList}>Back to catalog</button>
+          <button className = 'mt-2 btn btn-primary' onClick = {this.backToList}>Back to catalog</button>
           <h3 className = 'mt-2'>My Cart</h3>
           <div>{cartItems}</div>
           <h4 className = 'my-4'>Item Total ${totalPrice.toFixed(2)}</h4>

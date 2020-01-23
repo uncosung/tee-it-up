@@ -17,7 +17,8 @@ export default class App extends React.Component {
         params: {}
       },
       cart: [],
-      added: ''
+      added: '',
+      buyerInfo: {}
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
@@ -63,8 +64,8 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'demoEnd') {
       return (
         <div className = 'col-12'>
-          <Header added={this.state.added} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
-          <DemoEnd/>
+          <Header added={this.state.added} setView = {this.setView} cartItemCount = {0}/>
+          <DemoEnd buyer={this.state.buyerInfo} cart={this.state.cart}/>
         </div>
       );
     } else {
@@ -137,7 +138,7 @@ export default class App extends React.Component {
       .then(res => res.json())
       .then(() => {
         this.setState({
-          cart: [],
+          buyerInfo: buyer,
           view: {
             name: 'demoEnd',
             params: {}
