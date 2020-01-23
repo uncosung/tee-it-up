@@ -90,13 +90,20 @@
     transition: all 0.5s ease 0s;
 }
 .product-info {
-    transition: all 0.5s ease 0s
+    transition: all 0.5s ease 0s;
+}
+.product-info div {
+    transition: all 0.25s ease 0s;
+    visibility: hidden;
 }
 .product-item:hover .product-info{
     transform: translateY(-75%)
 }
 .product-item:hover .product-img {
     opacity: 0.25;
+}
+.product-item:hover .product-info div {
+    visibility: visible
 }
 @media only screen and (max-width: 812px) and (min-width: 812px){
     .product-item{
@@ -109,6 +116,9 @@
 }
 .product-details-top, .cart-item-top {
     margin-top: 3vh;
+}
+.product-details-img {
+    height: 25%;
 }
 .back-button {
     margin-top: 1vh;
@@ -147,7 +157,4 @@
 }
 .demo-end {
     top: 25vh;
-}
-.reload-button {
-    margin-top: 10vh;
 }

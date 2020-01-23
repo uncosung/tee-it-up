@@ -32,9 +32,9 @@ class ProductDetails extends React.Component {
           <div className = 'product-details-top row'>
             <div className = 'product-details-img-container col-6'>
               <Slider className = 'carousel' {...settings}>
-                <img className = 'product-details-img col-12' src={imgUrl}></img>
-                <img className = 'product-details-img col-12' src={imgArray[0]}></img>
-                <img className = 'product-details-img col-12' src={imgArray[1]}></img>
+                <img className = 'product-details-img offset-2 col-8' src={imgUrl}></img>
+                <img className = 'product-details-img offset-2 col-8' src={imgArray[0]}></img>
+                <img className = 'product-details-img offset-2 col-8' src={imgArray[1]}></img>
               </Slider>
             </div>
             <div className = 'product-details-info col-6'>
@@ -42,10 +42,8 @@ class ProductDetails extends React.Component {
               <h4 className = 'product-details-price '>${price}</h4>
               <div className = 'product-details-short '>{shortDescription}</div>
               <button onClick = {this.addToCart} className = 'cart-button btn btn-primary my-5'>Add to Cart</button>
+              <div className = 'product-details-long'>{longDescription}</div>
             </div>
-          </div>
-          <div className = 'product-details-bottom card-body'>
-            <div className = 'product-details-long'>{longDescription}</div>
           </div>
         </div>
       );
