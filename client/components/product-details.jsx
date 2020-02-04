@@ -5,9 +5,12 @@ class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      quantity: null
     };
     this.backToList = this.backToList.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.incrementQuantity = this.incrementQuantity.bind(this);
+    this.decrementQuantity = this.decrementQuantity.bind(this);
   }
   render() {
     const settings = {
@@ -41,7 +44,15 @@ class ProductDetails extends React.Component {
               <h3 className = 'card-title product-details-name '>{name}</h3>
               <h4 className = 'product-details-price '>${price}</h4>
               <div className = 'product-details-short '>{shortDescription}</div>
-              <button onClick = {this.addToCart} className = 'cart-button btn btn-primary my-5'>Add to Cart</button>
+              <div className = 'col-12'>
+                <br/>
+                <h5 className = 'col-9'>
+                  <i className="fas fa-minus-square pointer-hover mr-2" onClick={this.decrementQuantity}></i>
+                Quantity: {this.state.quantity}
+                  <i className="fas fa-plus-square pointer-hover ml-2" onClick={this.incrementQuantity}></i>
+                </h5>
+                <button onClick = {this.addToCart} className = 'cart-button btn btn-success my-5'>Add to Cart</button>
+              </div>
               <div className = 'product-details-long'>{longDescription}</div>
             </div>
           </div>
@@ -57,7 +68,8 @@ class ProductDetails extends React.Component {
       .then(res => res.json())
       .then(product => {
         this.setState({
-          product: product[id]
+          product: product[id],
+          quantity: 1
         });
       });
   }
@@ -69,7 +81,20 @@ class ProductDetails extends React.Component {
     });
   }
   addToCart() {
-    this.props.addToCart(this.state.product);
+    this.props.addToCart(this.state.product, this.state.quantity);
+  }
+  incrementQuantity() {
+    this.setState({
+      quantity: this.state.quantity + 1
+    });
+  }
+  decrementQuantity() {
+    if (this.state.quantity === 1) {
+      return;
+    }
+    this.setState({
+      quantity: this.state.quantity - 1
+    });
   }
 }
 export default ProductDetails;
