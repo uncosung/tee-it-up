@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Modal } from 'react-bootstrap';
-
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 class CartSummaryItem extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +25,7 @@ class CartSummaryItem extends React.Component {
     return (
       <div className = 'cart-item card offset-2 col-8 my-4'>
         <Modal style={modalStyle} show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
+          <Modal.Header>
             <Modal.Title>Notice</Modal.Title>
           </Modal.Header>
           <Modal.Body>Are you sure you want to remove this item from your cart?</Modal.Body>

@@ -19,12 +19,16 @@ export default class App extends React.Component {
       },
       cart: [],
       added: '',
-      buyerInfo: {}
+      buyerInfo: {},
+      quantity: 0,
+      price: 0
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.updateQuantities = this.updateQuantities.bind(this);
+    this.checkoutPrices = this.checkoutPrices.bind(this);
     this.productListFocus = React.createRef();
   }
   componentDidMount() {
@@ -44,7 +48,7 @@ export default class App extends React.Component {
     if (this.state.view.name === 'demoStart') {
       return (
         <div className = 'col-12'>
-          <Header added={this.state.added} productListFocus = {this.productListFocus} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
+          <Header quantity = {this.state.quantity} added={this.state.added} productListFocus = {this.productListFocus} setView = {this.setView} cart = {this.state.cart} updateQuantities = {this.updateQuantities}/>
           <DemoStart/>
           <Hero productListFocus = {this.productListFocus}/>
           <ProductList productListFocus = {this.productListFocus} addToCart = {this.addToCart} product={this.state.products} setView = {this.setView}/>
@@ -53,7 +57,7 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'catalog') {
       return (
         <div className = 'col-12'>
-          <Header added={this.state.added} productListFocus = {this.productListFocus} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
+          <Header quantity = {this.state.quantity} added={this.state.added} productListFocus = {this.productListFocus} setView = {this.setView} cart = {this.state.cart} updateQuantities = {this.updateQuantities}/>
           <Hero productListFocus = {this.productListFocus}/>
           <ProductList productListFocus = {this.productListFocus} addToCart = {this.addToCart} product={this.state.products} setView = {this.setView}/>
         </div>
@@ -61,28 +65,28 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'cart') {
       return (
         <div className = 'col-12'>
-          <Header added={this.state.added} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
-          <CartSummary removeItem = {this.removeItem} setView = {this.setView} cart = {this.state.cart} addToCart = {this.addToCart}/>
+          <Header quantity = {this.state.quantity} added={this.state.added} setView = {this.setView} cart = {this.state.cart}/>
+          <CartSummary checkoutPrices = {this.checkoutPrices} removeItem = {this.removeItem} setView = {this.setView} cart = {this.state.cart} addToCart = {this.addToCart} updateQuantities = {this.updateQuantities}/>
         </div>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
         <div className = 'col-12'>
-          <Header added={this.state.added} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
-          <CheckoutForm setView={this.setView} cart = {this.state.cart} handleSubmit = {this.placeOrder}/>
+          <Header quantity = {this.state.quantity} added={this.state.added} setView = {this.setView} cart = {this.state.cart} updateQuantities = {this.updateQuantities}/>
+          <CheckoutForm setView={this.setView} cart = {this.state.cart} handleSubmit = {this.placeOrder} price = {this.state.price}/>
         </div>
       );
     } else if (this.state.view.name === 'demoEnd') {
       return (
         <div className = 'col-12'>
-          <Header added={this.state.added} setView = {this.setView} cartItemCount = {0}/>
-          <DemoEnd buyer={this.state.buyerInfo} cart={this.state.cart}/>
+          <Header quantity = {this.state.quantity} added={this.state.added} setView = {this.setView} cart = {0} updateQuantities = {this.updateQuantities}/>
+          <DemoEnd buyer={this.state.buyerInfo} cart={this.state.cart} price={this.state.price}/>
         </div>
       );
     } else {
       return (
         <div className = 'col-12'>
-          <Header added={this.state.added} setView = {this.setView} cartItemCount = {this.state.cart.length}/>
+          <Header quantity = {this.state.quantity} added={this.state.added} setView = {this.setView} cart = {this.state.cart} updateQuantities = {this.updateQuantities}/>
           <ProductDetails addToCart = {this.addToCart} backToList = {this.backToList} key={this.state.view.params} params={this.state.view.params} setView = {this.setView}/>
         </div>
       );
@@ -123,6 +127,8 @@ export default class App extends React.Component {
         tempCart[i].quantity = quantity;
         this.setState({
           cart: tempCart
+        }, () => {
+          this.updateQuantities();
         });
         return;
       }
@@ -139,8 +145,21 @@ export default class App extends React.Component {
         this.setState({
           cart: [...this.state.cart, product],
           added: 'Show'
+        }, () => {
+          this.updateQuantities();
         });
       });
+  }
+  updateQuantities() {
+    if (this.state.cart.length > 0) {
+      let tempTotal = 0;
+      for (let i = 0; i < this.state.cart.length; i++) {
+        tempTotal += this.state.cart[i].quantity;
+      }
+      this.setState({
+        quantity: tempTotal
+      });
+    }
   }
   removeItem(item) {
     let tempCart = this.state.cart;
@@ -151,6 +170,11 @@ export default class App extends React.Component {
     }
     this.setState({
       cart: tempCart
+    });
+  }
+  checkoutPrices(total) {
+    this.setState({
+      price: total
     });
   }
   placeOrder(customer) {

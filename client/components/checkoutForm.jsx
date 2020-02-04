@@ -15,18 +15,12 @@ class CheckoutForm extends React.Component {
   }
 
   render() {
-    const priceArray = this.props.cart.map(item => {
-      return (parseFloat(item.price) / 100).toFixed(2);
-    });
-    let totalPrice = 0;
-    for (let i = 0; i < priceArray.length; i++) {
-      totalPrice = totalPrice + parseFloat(priceArray[i]);
-    }
+    let total = parseFloat(this.props.price).toFixed(2);
     return (
       <div className = 'col-12 my-5'>
         <div className = 'checkout-top offset-2 col-8 row'>
           <h2 className = 'col-12'>Checkout</h2>
-          <h3 className = 'col-12 my-3'>Order Total: ${totalPrice.toFixed(2)}</h3>
+          <h3 className = 'col-12 my-3'>Order Total: ${total}</h3>
         </div>
         <div className = 'offset-2 col-8 form-group'>
           <form onSubmit = {this.handleSubmit}>

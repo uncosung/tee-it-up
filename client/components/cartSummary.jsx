@@ -7,6 +7,7 @@ class CartSummary extends React.Component {
     this.backToList = this.backToList.bind(this);
     this.checkout = this.checkout.bind(this);
     this.updatePrices = this.updatePrices.bind(this);
+    this.checkoutPrices = this.checkoutPrices.bind(this);
     this.state = {
       price: 0
     };
@@ -42,17 +43,27 @@ class CartSummary extends React.Component {
       );
     }
   }
-  updatePrices(prices) {
-    const priceArray = this.props.cart.map(item => {
-      return (parseFloat(item.price) / 100).toFixed(2);
-    });
-    let totalPrice = 0;
-    for (let i = 0; i < priceArray.length; i++) {
-      totalPrice = totalPrice + parseFloat(priceArray[i]);
-    }
+  updatePrices() {
+    // const priceArray = this.props.cart.map(item => {
+    //   return (parseFloat(item.price) / 100).toFixed(2);
+    // });
+    // let totalPrice = 0;
+    // for (let i = 0; i < priceArray.length; i++) {
+    //   totalPrice = totalPrice + parseFloat(priceArray[i]);
+    // }
+    const totalCartPrice = this.props.cart.reduce((total, item) => {
+      total += item.price * item.quantity;
+      return total;
+    }, 0);
+    const totalPrice = (parseFloat(totalCartPrice / 100)).toFixed(2);
     this.setState({
       price: totalPrice
+    }, () => {
+      this.checkoutPrices(totalPrice);
     });
+  }
+  checkoutPrices(price) {
+    this.props.checkoutPrices(price);
   }
   checkout() {
     this.props.setView('checkout', {});
