@@ -1,6 +1,12 @@
 import React from 'react';
 
 export default class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quantity: this.props.quantity
+    };
+  }
   render() {
     return (
       <nav className = 'header navbar navbar-expand-lg navbar-dark shadow fixed-top'>
@@ -13,7 +19,7 @@ export default class Header extends React.Component {
           </a>
         </div>
         <div onClick = {() => { this.props.setView('cart', {}); }}className = 'cart-container'>
-          <div className = 'mx-1'>{this.props.cartItemCount} items</div>
+          <div className = 'mx-1'>{this.props.quantity} items</div>
           <span>
             <i className="cart fas fa-shopping-cart"></i>
           </span>

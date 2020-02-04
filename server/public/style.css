@@ -1,6 +1,6 @@
 
-#root {
-    display: flex;
+body {
+    /* position: absolute; */
 }
 .header {
     height: 10vh;
@@ -27,10 +27,19 @@
     opacity: 0;
     transition: visibility 0s 2.5s, opacity 0.5s linear
 }
-.cartConfirmationShow{
+.cartConfirmationShow {
     visibility: visible;
     opacity: 1;
     transition: opacity 0.5s linear
+}
+.demo-start {
+    visibility: visible;
+    position: absolute;
+    top: 25vh;
+    width: 50vw;
+    left: 25%;
+    text-align: center;
+    z-index: 100;
 }
 .logo {
     left: 5vw;
@@ -66,8 +75,8 @@
     left: 50%;
     top: 50%;
 }
-.hero-button {
-
+#emptyCartButton {
+    margin-top: 10px
 }
 .product-list {
     padding-top: 10vh;  
@@ -157,4 +166,11 @@
 }
 .demo-end {
     top: 25vh;
+}
+.quantity {
+    justify-content: center;
+    text-align: center;
+}
+.pointer-hover {
+    cursor: pointer;
 }

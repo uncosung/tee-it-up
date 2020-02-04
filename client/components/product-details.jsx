@@ -1,13 +1,22 @@
 import React from 'react';
 import Slider from 'react-slick';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      quantity: 1,
+      show: false
     };
     this.backToList = this.backToList.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.checkout = this.checkout.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.incrementQuantity = this.incrementQuantity.bind(this);
+    this.decrementQuantity = this.decrementQuantity.bind(this);
   }
   render() {
     const settings = {
@@ -26,8 +35,37 @@ class ProductDetails extends React.Component {
       const price = parseFloat(this.state.product.price / 100).toFixed(2);
       const shortDescription = this.state.product.shortDescription;
       const longDescription = this.state.product.longDescription;
+      const modalStyle = {
+        top: '15vh'
+      };
       return (
         <div className = 'product-details card col-md-12 col-12'>
+
+          <Modal style={modalStyle} show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header>
+              <Modal.Title>Added to Cart</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className='row align-items-center my-1'>
+                <img className = 'product-details-img offset-2 col-8' src={imgUrl}></img>
+                <div className = 'col-7'>
+                  <h5>{name}</h5>
+                  <h5>${price}</h5>
+                  <h5>Quantity: {this.state.quantity}</h5>
+                </div>
+              </div>
+
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={this.checkout}>
+                  Checkout
+              </Button>
+              <Button variant="secondary" onClick={this.backToList}>
+                  Continue Shopping
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
           <button className = 'col-2 back-button btn btn-primary' onClick = {this.backToList}>Back to catalog</button>
           <div className = 'product-details-top row'>
             <div className = 'product-details-img-container col-6'>
@@ -41,7 +79,15 @@ class ProductDetails extends React.Component {
               <h3 className = 'card-title product-details-name '>{name}</h3>
               <h4 className = 'product-details-price '>${price}</h4>
               <div className = 'product-details-short '>{shortDescription}</div>
-              <button onClick = {this.addToCart} className = 'cart-button btn btn-primary my-5'>Add to Cart</button>
+              <div className = 'col-12'>
+                <br/>
+                <h5 className = 'col-9'>
+                  <i className="fas fa-minus-square pointer-hover mr-2" onClick={this.decrementQuantity}></i>
+                Quantity: {this.state.quantity}
+                  <i className="fas fa-plus-square pointer-hover ml-2" onClick={this.incrementQuantity}></i>
+                </h5>
+                <button onClick = {this.addToCart} className = 'cart-button btn btn-success my-5'>Add to Cart</button>
+              </div>
               <div className = 'product-details-long'>{longDescription}</div>
             </div>
           </div>
@@ -69,7 +115,34 @@ class ProductDetails extends React.Component {
     });
   }
   addToCart() {
-    this.props.addToCart(this.state.product);
+    this.props.addToCart(this.state.product, this.state.quantity);
+    this.handleOpen();
+  }
+  checkout() {
+    this.props.setView('cart', {});
+  }
+  handleOpen() {
+    this.setState({
+      show: true
+    });
+  }
+  handleClose() {
+    this.setState({
+      show: false
+    });
+  }
+  incrementQuantity() {
+    this.setState({
+      quantity: this.state.quantity + 1
+    });
+  }
+  decrementQuantity() {
+    if (this.state.quantity === 1) {
+      return;
+    }
+    this.setState({
+      quantity: this.state.quantity - 1
+    });
   }
 }
 export default ProductDetails;
