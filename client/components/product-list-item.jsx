@@ -12,7 +12,7 @@ export default class ProductListItem extends React.Component {
     const price = parseFloat(this.props.product.price / 100).toFixed(2);
     const shortDescription = this.props.product.shortDescription;
     return (
-      <div className = 'product-item card col-md-3 col-12 mx-4 my-4 py-4'>
+      <div className = 'product-item card col-xl-3 col-12 col-sm-5 mx-4 my-4 py-4'>
         <div className = ' card-img-top'>
           <img className = 'product-img' src={imgUrl}></img>
         </div>

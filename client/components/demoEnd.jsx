@@ -10,7 +10,7 @@ export default class DemoEnd extends React.Component {
     });
     return (
       <div className = 'cart-list col-12'>
-        <h2>Thank you for trying out Tee It Up! E-Commerce Golf Store. This demo is now over. Please note that no personal information has been saved.</h2>
+        <h3>Thank you for trying out Tee It Up! E-Commerce Golf Store. This demo is now over. Please note that no personal information has been saved.</h3>
         <button className = 'mt-2 reload-button btn btn-lg btn-primary' onClick={() => { location.reload(); }}>Reload Page</button>
         <h3 className = 'mt-2'>Order Confirmation</h3>
         <div>{cartItems}</div>

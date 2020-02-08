@@ -18,6 +18,7 @@ export default class App extends React.Component {
         params: {}
       },
       cart: [],
+      checkoutCart: [],
       added: '',
       buyerInfo: {},
       quantity: 0,
@@ -29,6 +30,7 @@ export default class App extends React.Component {
     this.removeItem = this.removeItem.bind(this);
     this.updateQuantities = this.updateQuantities.bind(this);
     this.checkoutPrices = this.checkoutPrices.bind(this);
+    this.clearCart = this.clearCart.bind(this);
     this.productListFocus = React.createRef();
   }
   componentDidMount() {
@@ -73,14 +75,14 @@ export default class App extends React.Component {
       return (
         <div className = 'col-12'>
           <Header quantity = {this.state.quantity} added={this.state.added} setView = {this.setView} cart = {this.state.cart} updateQuantities = {this.updateQuantities}/>
-          <CheckoutForm setView={this.setView} cart = {this.state.cart} handleSubmit = {this.placeOrder} price = {this.state.price}/>
+          <CheckoutForm clearCart={this.clearCart} setView={this.setView} cart = {this.state.cart} handleSubmit = {this.placeOrder} price = {this.state.price}/>
         </div>
       );
     } else if (this.state.view.name === 'demoEnd') {
       return (
         <div className = 'col-12'>
-          <Header quantity = {this.state.quantity} added={this.state.added} setView = {this.setView} cart = {0} updateQuantities = {this.updateQuantities}/>
-          <DemoEnd buyer={this.state.buyerInfo} cart={this.state.cart} price={this.state.price}/>
+          <Header quantity = {this.state.quantity} added={this.state.added} setView = {this.setView} cart = {this.state.checkoutCart} updateQuantities = {this.updateQuantities}/>
+          <DemoEnd buyer={this.state.buyerInfo} cart={this.state.checkoutCart} price={this.state.price}/>
         </div>
       );
     } else {
@@ -175,6 +177,13 @@ export default class App extends React.Component {
   checkoutPrices(total) {
     this.setState({
       price: total
+    });
+  }
+  clearCart(tempCart) {
+    this.setState({
+      quantity: 0,
+      cart: [],
+      checkoutCart: tempCart
     });
   }
   placeOrder(customer) {
