@@ -1,0 +1,216 @@
+.header {
+    height: 10vh;
+    background-color: #04054F;
+}
+.cartConfirmationContainer {
+    position: absolute;
+    top: 8vh;
+    right: 0;
+}
+.cartConfirmation, .cartConfirmationShow {
+    position: sticky;
+    top: 10px;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 15px;
+    z-index: 1000000;
+}
+.cartConfirmation {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2.5s, opacity 0.5s linear
+}
+.cartConfirmationShow {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s linear
+}
+.demo-start {
+    visibility: visible;
+    position: absolute;
+    top: 25vh;
+    width: 50vw;
+    left: 25%;
+    text-align: center;
+    z-index: 100;
+}
+.logo {
+    left: 5vw;
+}
+.logo i {
+   margin-right: 1vw; 
+}
+.hero {
+    position: relative;
+    margin-top: 10vh;
+}
+.hero-image {
+    background-image: url('./images/golf-background.jpeg');
+    background-size: cover;
+    background-position: 85%;
+    height: 65vh;
+    width: 100%;
+    color: white;
+    display: block;
+    top: 60%;
+    left: 50%;
+    transform: translate (-50%, -50%);
+    font-size: 2.5rem;
+    line-height: 1;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    text-shadow: 2px 2px grey;
+}
+.hero-title {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+#emptyCartButton {
+    margin-top: 10px
+}
+.product-list {
+    padding-top: 10vh;  
+    justify-content: center
+}
+.product-item {
+    display: inline-block;
+    height: 50vh;
+    overflow: hidden;
+    transition: all 1s ease 0s;
+}
+.list-button {
+    margin-top: 2vh;
+}
+.product-img {
+    width: auto;
+    height: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.5s ease 0s;
+}
+.product-info div {
+    transition: all 0.25s ease 0s;
+    visibility: hidden;
+}
+@media only screen and (max-width: 1024px){
+    .product-item{
+        height: 80vh;
+    };
+    .product-img{
+        height: 80%
+    }
+    .product-info div {
+        visibility: visible
+    }
+    .product-details-name {
+        margin-top: 25px;
+    }
+    .quantity{
+        margin-top: 10px;
+    }
+    .quantity button {
+        margin-top: 10px;
+    }
+    @media (orientation: landscape) and (max-height: 420px){
+        .product-item{
+            height: 130vh;
+        }
+    }
+}
+@media only screen and (max-width: 1025px){
+    .product-info div {
+        visibility: visible
+    }
+}
+@media only screen and (min-width: 1024px){
+    .product-item:hover .product-info{
+        transform: translateY(-75%)
+    }
+    .product-item:hover .product-img {
+        opacity: 0.25;
+    }
+    .product-item:hover .product-info div {
+        visibility: visible
+    }
+}
+
+.product-details {
+    margin-top: 10vh;
+    border: none;
+}
+.product-details-top, .cart-item-top {
+    margin-top: 3vh;
+}
+.product-details-img {
+    height: 25%;
+}
+.back-button {
+    margin-top: 1vh;
+}
+.cart-container {
+    position: absolute;
+    right: 3vw;
+    color: white;
+    display: flex;
+    cursor: pointer;
+}
+.cart-list {
+    margin-top: 10vh;
+}
+.cart-list > h3 {
+    margin-top: 13vh;
+}
+.cart-item-name {
+    margin-top: 0;
+}
+.shipping{
+    height: 40%;
+}
+.checkout-top {
+    margin-top: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.submitRow {
+    margin-top: 5vh;
+}
+.placeOrder {
+    position: absolute;
+    right: 0;
+}
+.carousel button:before {
+    color: grey;
+}
+.demo-end {
+    top: 25vh;
+}
+.quantity {
+    justify-content: center;
+    text-align: center;
+}
+.pointer-hover {
+    cursor: pointer;
+}
+.notEntered {
+    display: none;
+}
+.valid {
+    display: none;
+}
+.invalid {
+    display: inline;
+    color: red;
+}
+.verified {
+    border: 2px solid green;
+}
+.unverified {
+    border: 2px solid red;
+}
