@@ -1,6 +1,8 @@
 # Tee-It-Up! 🏌️
 * Live Demo: __https://tee-it-up.ericsung.dev__
 
+![](tee-it-up.gif)
+
 <hr/>
 
 Tee-It-Up! is a full-stack, demo E-Commerce store that has all your golfing needs. The app provides user with the ability to add items from the catalog to their cart, update any item quantities from within the cart, remove any items from the cart, and go through a checkout process that does not record any personal or payment information used.
