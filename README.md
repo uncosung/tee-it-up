@@ -1,4 +1,4 @@
-# Tee-It-Up! 👟
+# Tee-It-Up! 🏌️
 * Live Demo: __https://tee-it-up.ericsung.dev__
 
 <hr/>
