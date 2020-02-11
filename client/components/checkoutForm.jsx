@@ -80,37 +80,28 @@ class CheckoutForm extends React.Component {
   handleChange() {
     const target = event.target;
     if (target.id === 'name') {
-      // this.setState({
-      //   name: target.value
-      // }, () => {
-      //   this.validateName(target);
-      // });
       this.validateName();
     }
     if (target.id === 'creditCard') {
       this.validateCard();
-      // this.setState({
-      //   creditCard: target.value
-      // });
     }
     if (target.id === 'creditCardCVV') {
       this.validateCvv();
-      // this.setState({
-      //   creditCardCVV: target.value
-      // });
     }
     if (target.id === 'shippingAddress') {
       this.validateAddress();
-      this.setState({
-        shippingAddress: target.value
-      });
     }
   }
   validateName() {
-    const nameRegex = /[A-Za-z0-9]/;
+    const nameRegex = /^[A-Za-z0-9_ .]*$/;
+    const nameLengthRegex = /^[A-Za-z0-9_ .]{5,65}$/;
     const { nameValidation } = this.state;
     if (nameRegex.test(event.target.value)) {
-      nameValidation.nameValid = 'valid';
+      if (nameLengthRegex.test(event.target.value)) {
+        nameValidation.nameValid = 'valid';
+      } else {
+        nameValidation.nameValid = 'invalid';
+      }
       nameValidation.nameCheck = 'verified';
       this.setState({
         name: event.target.value
@@ -162,11 +153,17 @@ class CheckoutForm extends React.Component {
     this.setState({ cvvValidation });
   }
   validateAddress() {
-    const addressRegex = /[A-Za-z0-9]/;
+    const addressRegex = /^[A-Za-z0-9_ ,.]*$/;
+    const addressLengthRegex = /^[A-Za-z0-9_ ,.]{20,156}$/;
     const { addressValidation } = this.state;
     if (addressRegex.test(event.target.value)) {
-      addressValidation.addressValid = 'valid';
+      if (addressLengthRegex.test(event.target.value)) {
+        addressValidation.addressValid = 'valid';
+      }
       addressValidation.addressCheck = 'verified';
+      this.setState({
+        shippingAddress: event.target.value
+      });
     } else {
       addressValidation.addressValid = 'invalid';
       addressValidation.addressCheck = 'unverified';
