@@ -45,6 +45,7 @@ class CheckoutForm extends React.Component {
           <h3 className = 'col-12 my-3'>Order Total: ${total}</h3>
         </div>
         <div autoComplete='off' className = 'offset-sm-2 col-sm-8 col-12 form-group'>
+          <input type='hidden' value='something'/>
           <div autoComplete='off' className = 'input-group mb-3'>
             <div className = 'col-12'>
               <input type='hidden' value='something'/>
