@@ -48,9 +48,11 @@ class CheckoutForm extends React.Component {
           <div className = 'offset-sm-2 col-sm-8 col-12 form-group'>
             <div className = 'input-group mb-3'>
               <div className = 'col-12'>
-                <input type='hidden' value='something'/>
-                <input autoComplete='no' name='cardName' id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
-                <div id='invalidName' className = {`col-12 ${this.state.nameValidation.nameValid}`}>Please input a valid name.</div>
+                <form autoComplete='off'>
+                  <input type='hidden' value='something'/>
+                  <input autoComplete='no' name='cardName' id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
+                  <div id='invalidName' className = {`col-12 ${this.state.nameValidation.nameValid}`}>Please input a valid name.</div>
+                </form>
               </div>
             </div>
             <div className = 'input-group mb-3'>
