@@ -121,6 +121,10 @@
         .product-item{
             height: 130vh;
         }
+        .logo {
+            padding-top: 0 !important;
+            margin-top: -5px;
+        }
     }
 }
 @media only screen and (max-width: 1025px){
@@ -151,7 +155,7 @@
     height: 25%;
 }
 .back-button {
-    margin-top: 1vh;
+    margin-top: 10px;
 }
 .cart-container {
     position: absolute;
@@ -213,4 +217,10 @@
 }
 .unverified {
     border: 2px solid red;
+}
+.slick-prev {
+    margin-left: 2vw;  
+}
+.slick-next {
+    margin-right: 2vw;
 }

@@ -47,13 +47,14 @@ class CheckoutForm extends React.Component {
         <div className = 'offset-sm-2 col-sm-8 col-12 form-group'>
           <div className = 'input-group mb-3'>
             <div className = 'col-12'>
-              <input id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
+              <input autoComplete='off' id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
               <div id='invalidName' className = {`col-12 ${this.state.nameValidation.nameValid}`}>Please input a valid name.</div>
             </div>
           </div>
           <div className = 'input-group mb-3'>
             <div className = 'col-sm-8 col-12 mr-3'>
-              <input id = 'creditCard' className = {`col-12 form-control ${this.state.cardValidation.cardCheck}`} type='text' placeholder = 'Credit Card Number (DEMO PURPOSES ONLY)' onChange = {this.handleChange} value = {this.state.creditCard}></input>
+              <input autoComplete='off' id = 'creditCard' className = {`col-12 form-control ${this.state.cardValidation.cardCheck}`} type='text' placeholder = 'Credit Card Number' onChange = {this.handleChange} value = {this.state.creditCard} maxLength='16'></input>
+              <div id='disclaimer' className='col-12'>For demo purposes only</div>
               <div id='invalidCard' className = {`col-12 ${this.state.cardValidation.cardValid}`}>Please input a valid card number.</div>
             </div>
             <div className = 'col-sm-3 col-12'>
@@ -63,7 +64,7 @@ class CheckoutForm extends React.Component {
           </div>
           <div className = 'shipping input-group mb-3'>
             <div className = 'col-12'>
-              <textarea id = 'shippingAddress' className = {`col-12 form-control ${this.state.addressValidation.addressCheck}`} type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
+              <textarea autoComplete='off' id = 'shippingAddress' className = {`col-12 form-control ${this.state.addressValidation.addressCheck}`} type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
               <div id='invalidAddress' className = {`col-12 ${this.state.addressValidation.addressValid}`}>Please input a valid address.</div>
             </div>
           </div>
@@ -79,23 +80,24 @@ class CheckoutForm extends React.Component {
   handleChange() {
     const target = event.target;
     if (target.id === 'name') {
-      this.setState({
-        name: target.value
-      }, () => {
-        this.validateName();
-      });
+      // this.setState({
+      //   name: target.value
+      // }, () => {
+      //   this.validateName(target);
+      // });
+      this.validateName();
     }
     if (target.id === 'creditCard') {
       this.validateCard();
-      this.setState({
-        creditCard: target.value
-      });
+      // this.setState({
+      //   creditCard: target.value
+      // });
     }
     if (target.id === 'creditCardCVV') {
       this.validateCvv();
-      this.setState({
-        creditCardCVV: target.value
-      });
+      // this.setState({
+      //   creditCardCVV: target.value
+      // });
     }
     if (target.id === 'shippingAddress') {
       this.validateAddress();
@@ -110,6 +112,9 @@ class CheckoutForm extends React.Component {
     if (nameRegex.test(event.target.value)) {
       nameValidation.nameValid = 'valid';
       nameValidation.nameCheck = 'verified';
+      this.setState({
+        name: event.target.value
+      });
     } else {
       nameValidation.nameValid = 'invalid';
       nameValidation.nameCheck = 'unverified';
@@ -117,11 +122,19 @@ class CheckoutForm extends React.Component {
     this.setState({ nameValidation });
   }
   validateCard() {
-    const cardRegex = /^[0-9]{16}$/;
+    const cardRegex = /^[0-9]*$/;
+    const cardLengthRegex = /^[0-9]{16}$/;
     const { cardValidation } = this.state;
     if (cardRegex.test(event.target.value)) {
-      cardValidation.cardValid = 'valid';
+      if (cardLengthRegex.test(event.target.value)) {
+        cardValidation.cardValid = 'valid';
+      } else {
+        cardValidation.cardValid = 'invalid';
+      }
       cardValidation.cardCheck = 'verified';
+      this.setState({
+        creditCard: event.target.value
+      });
     } else {
       cardValidation.cardValid = 'invalid';
       cardValidation.cardCheck = 'unverified';
@@ -129,11 +142,19 @@ class CheckoutForm extends React.Component {
     this.setState({ cardValidation });
   }
   validateCvv() {
-    const cvvRegex = /^[0-9]{3,4}$/;
+    const cvvRegex = /^[0-9]*$/;
+    const cvvLengthRegex = /^[0-9]{3,4}$/;
     const { cvvValidation } = this.state;
     if (cvvRegex.test(event.target.value)) {
-      cvvValidation.cvvValid = 'valid';
+      if (cvvLengthRegex.test(event.target.value)) {
+        cvvValidation.cvvValid = 'valid';
+      } else {
+        cvvValidation.cvvValid = 'invalid';
+      }
       cvvValidation.cvvCheck = 'verified';
+      this.setState({
+        creditCardCVV: event.target.value
+      });
     } else {
       cvvValidation.cvvValid = 'invalid';
       cvvValidation.cvvCheck = 'unverified';
