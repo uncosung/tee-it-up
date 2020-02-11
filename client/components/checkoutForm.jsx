@@ -47,13 +47,13 @@ class CheckoutForm extends React.Component {
         <div className = 'offset-sm-2 col-sm-8 col-12 form-group'>
           <div className = 'input-group mb-3'>
             <div className = 'col-12'>
-              <input autoComplete='off' id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
+              <input autoComplete='new-password' id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
               <div id='invalidName' className = {`col-12 ${this.state.nameValidation.nameValid}`}>Please input a valid name.</div>
             </div>
           </div>
           <div className = 'input-group mb-3'>
             <div className = 'col-sm-8 col-12 mr-3'>
-              <input autoComplete='off' id = 'creditCard' className = {`col-12 form-control ${this.state.cardValidation.cardCheck}`} type='text' placeholder = 'Credit Card Number' onChange = {this.handleChange} value = {this.state.creditCard} maxLength='16'></input>
+              <input autoComplete='new-password' id = 'creditCard' className = {`col-12 form-control ${this.state.cardValidation.cardCheck}`} type='text' placeholder = 'Credit Card Number' onChange = {this.handleChange} value = {this.state.creditCard} maxLength='16'></input>
               <div id='disclaimer' className='col-12'>For demo purposes only</div>
               <div id='invalidCard' className = {`col-12 ${this.state.cardValidation.cardValid}`}>Please input a valid card number.</div>
             </div>
@@ -64,7 +64,7 @@ class CheckoutForm extends React.Component {
           </div>
           <div className = 'shipping input-group mb-3'>
             <div className = 'col-12'>
-              <textarea autoComplete='off' id = 'shippingAddress' className = {`col-12 form-control ${this.state.addressValidation.addressCheck}`} type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
+              <textarea autoComplete='new-password' id = 'shippingAddress' className = {`col-12 form-control ${this.state.addressValidation.addressCheck}`} type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
               <div id='invalidAddress' className = {`col-12 ${this.state.addressValidation.addressValid}`}>Please input a valid address.</div>
             </div>
           </div>
