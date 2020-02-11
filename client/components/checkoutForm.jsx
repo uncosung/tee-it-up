@@ -44,19 +44,19 @@ class CheckoutForm extends React.Component {
           <h2 className = 'col-12'>Checkout</h2>
           <h3 className = 'col-12 my-3'>Order Total: ${total}</h3>
         </div>
-        <div autoComplete='off' className = 'offset-sm-2 col-sm-8 col-12 form-group'>
+        <div autoComplete='semantic' className = 'offset-sm-2 col-sm-8 col-12 form-group'>
           <input type='hidden' value='something'/>
-          <div autoComplete='off' className = 'input-group mb-3'>
+          <div autoComplete='semantic' className = 'input-group mb-3'>
             <div className = 'col-12'>
               <input type='hidden' value='something'/>
-              <input autoComplete='off' id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
+              <input autoComplete='semantic' id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
               <div id='invalidName' className = {`col-12 ${this.state.nameValidation.nameValid}`}>Please input a valid name.</div>
             </div>
           </div>
-          <div autoComplete='off' className = 'input-group mb-3'>
+          <div autoComplete='semantic' className = 'input-group mb-3'>
             <div className = 'col-sm-8 col-12 mr-3'>
               <input type='hidden' value='something'/>
-              <input autoComplete='off' id = 'creditCard' className = {`col-12 form-control ${this.state.cardValidation.cardCheck}`} type='text' placeholder = 'Credit Card Number' onChange = {this.handleChange} value = {this.state.creditCard} maxLength='16'></input>
+              <input autoComplete='semantic' id = 'creditCard' className = {`col-12 form-control ${this.state.cardValidation.cardCheck}`} type='text' placeholder = 'Credit Card Number' onChange = {this.handleChange} value = {this.state.creditCard} maxLength='16'></input>
               <div id='disclaimer' className='col-12'>For demo purposes only</div>
               <div id='invalidCard' className = {`col-12 ${this.state.cardValidation.cardValid}`}>Please input a valid card number.</div>
             </div>
@@ -68,7 +68,7 @@ class CheckoutForm extends React.Component {
           <div className = 'shipping input-group mb-3'>
             <div className = 'col-12'>
               <input type='hidden' value='something'/>
-              <textarea autoComplete='off' id = 'shippingAddress' className = {`col-12 form-control ${this.state.addressValidation.addressCheck}`} type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
+              <textarea autoComplete='semantic' id = 'shippingAddress' className = {`col-12 form-control ${this.state.addressValidation.addressCheck}`} type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
               <div id='invalidAddress' className = {`col-12 ${this.state.addressValidation.addressValid}`}>Please input a valid address.</div>
             </div>
           </div>
