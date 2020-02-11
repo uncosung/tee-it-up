@@ -49,27 +49,32 @@ class CheckoutForm extends React.Component {
             <div className = 'input-group mb-3'>
               <div className = 'col-12'>
                 <form autoComplete='off'>
-                  <input type='hidden' value='something'/>
-                  <input autoComplete='no' name='cardName' id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
+                  <input id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
                   <div id='invalidName' className = {`col-12 ${this.state.nameValidation.nameValid}`}>Please input a valid name.</div>
                 </form>
               </div>
             </div>
             <div className = 'input-group mb-3'>
               <div className = 'col-sm-8 col-12 mr-3'>
-                <input autoComplete='no' name='cardNumber' id = 'creditCard' className = {`col-12 form-control ${this.state.cardValidation.cardCheck}`} type='text' placeholder = 'Credit Card Number' onChange = {this.handleChange} value = {this.state.creditCard} maxLength='16'></input>
-                <div id='disclaimer' className='col-12'>For demo purposes only</div>
-                <div id='invalidCard' className = {`col-12 ${this.state.cardValidation.cardValid}`}>Please input a valid card number.</div>
+                <form autoComplete='off'>
+                  <input id = 'creditCard' className = {`col-12 form-control ${this.state.cardValidation.cardCheck}`} type='text' placeholder = 'Credit Card Number' onChange = {this.handleChange} value = {this.state.creditCard} maxLength='16'></input>
+                  <div id='disclaimer' className='col-12'>For demo purposes only</div>
+                  <div id='invalidCard' className = {`col-12 ${this.state.cardValidation.cardValid}`}>Please input a valid card number.</div>
+                </form>
               </div>
               <div className = 'col-sm-3 col-12'>
-                <input autoComplete='no' id='creditCardCVV' name='cardCVV' className = {`col-12 form-control ${this.state.cvvValidation.cvvCheck}`} type='text' placeholder = 'CVV' onChange = {this.handleChange} value = {this.state.creditCardCVV}></input>
-                <div id='invalidCvv' className = {`col-12 ${this.state.cvvValidation.cvvValid}`}>Invalid CVV.</div>
+                <form autoComplete='off'>
+                  <input id='creditCardCVV' className = {`col-12 form-control ${this.state.cvvValidation.cvvCheck}`} type='text' placeholder = 'CVV' onChange = {this.handleChange} value = {this.state.creditCardCVV}></input>
+                  <div id='invalidCvv' className = {`col-12 ${this.state.cvvValidation.cvvValid}`}>Invalid CVV.</div>
+                </form>
               </div>
             </div>
             <div className = 'shipping input-group mb-3'>
               <div className = 'col-12'>
-                <textarea autoComplete='no' name='cardAddress' id = 'shippingAddress' className = {`col-12 form-control ${this.state.addressValidation.addressCheck}`} type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
-                <div id='invalidAddress' className = {`col-12 ${this.state.addressValidation.addressValid}`}>Please input a valid address.</div>
+                <form autoComplete='off'>
+                  <textarea id = 'shippingAddress' className = {`col-12 form-control ${this.state.addressValidation.addressCheck}`} type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
+                  <div id='invalidAddress' className = {`col-12 ${this.state.addressValidation.addressValid}`}>Please input a valid address.</div>
+                </form>
               </div>
             </div>
             <div className = 'submitRow row'>
