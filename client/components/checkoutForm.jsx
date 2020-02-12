@@ -44,45 +44,43 @@ class CheckoutForm extends React.Component {
           <h2 className = 'col-12'>Checkout</h2>
           <h3 className = 'col-12 my-3'>Order Total: ${total}</h3>
         </div>
-        <form autoComplete='new-password'>
-          <div className = 'offset-sm-2 col-sm-8 col-12 form-group'>
-            <div className = 'input-group mb-3'>
-              <div className = 'col-12'>
-                <form autoComplete='off'>
-                  <input id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
-                  <div id='invalidName' className = {`col-12 ${this.state.nameValidation.nameValid}`}>Please input a valid name.</div>
-                </form>
-              </div>
-            </div>
-            <div className = 'input-group mb-3'>
-              <div className = 'col-sm-8 col-12 mr-3'>
-                <form autoComplete='off'>
-                  <input id = 'creditCard' className = {`col-12 form-control ${this.state.cardValidation.cardCheck}`} type='text' placeholder = 'Credit Card Number' onChange = {this.handleChange} value = {this.state.creditCard} maxLength='16'></input>
-                  <div id='disclaimer' className='col-12'>For demo purposes only</div>
-                  <div id='invalidCard' className = {`col-12 ${this.state.cardValidation.cardValid}`}>Please input a valid card number.</div>
-                </form>
-              </div>
-              <div className = 'col-sm-3 col-12'>
-                <form autoComplete='off'>
-                  <input id='creditCardCVV' className = {`col-12 form-control ${this.state.cvvValidation.cvvCheck}`} type='text' placeholder = 'CVV' onChange = {this.handleChange} value = {this.state.creditCardCVV}></input>
-                  <div id='invalidCvv' className = {`col-12 ${this.state.cvvValidation.cvvValid}`}>Invalid CVV.</div>
-                </form>
-              </div>
-            </div>
-            <div className = 'shipping input-group mb-3'>
-              <div className = 'col-12'>
-                <form autoComplete='off'>
-                  <textarea id = 'shippingAddress' className = {`col-12 form-control ${this.state.addressValidation.addressCheck}`} type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
-                  <div id='invalidAddress' className = {`col-12 ${this.state.addressValidation.addressValid}`}>Please input a valid address.</div>
-                </form>
-              </div>
-            </div>
-            <div className = 'submitRow row'>
-              <button className = 'btn btn-primary' onClick = {this.backToShop}>Continue Shopping</button>
-              <button className = 'placeOrder btn btn-success' type='submit' onClick={this.handleSubmit}>Place Order</button>
+        <div className = 'offset-sm-2 col-sm-8 col-12 form-group'>
+          <div className = 'input-group mb-3'>
+            <div className = 'col-12'>
+              <form autoComplete='off'>
+                <input id = 'name' className = {`col-8 form-control ${this.state.nameValidation.nameCheck}`} type='text' placeholder = 'Name On Card' onChange = {this.handleChange} value = {this.state.name}></input>
+                <div id='invalidName' className = {`col-12 ${this.state.nameValidation.nameValid}`}>Please input a valid name.</div>
+              </form>
             </div>
           </div>
-        </form>
+          <div className = 'input-group mb-3'>
+            <div className = 'col-sm-8 col-12 mr-3'>
+              <form autoComplete='off'>
+                <input id = 'creditCard' className = {`col-12 form-control ${this.state.cardValidation.cardCheck}`} type='text' placeholder = 'Credit Card Number' onChange = {this.handleChange} value = {this.state.creditCard} maxLength='16'></input>
+                <div id='disclaimer' className='col-12'>For demo purposes only</div>
+                <div id='invalidCard' className = {`col-12 ${this.state.cardValidation.cardValid}`}>Please input a valid card number.</div>
+              </form>
+            </div>
+            <div className = 'col-sm-3 col-12'>
+              <form autoComplete='off'>
+                <input id='creditCardCVV' className = {`col-12 form-control ${this.state.cvvValidation.cvvCheck}`} type='text' placeholder = 'CVV' onChange = {this.handleChange} value = {this.state.creditCardCVV} maxLength='4'></input>
+                <div id='invalidCvv' className = {`col-12 ${this.state.cvvValidation.cvvValid}`}>Invalid CVV.</div>
+              </form>
+            </div>
+          </div>
+          <div className = 'shipping input-group mb-3'>
+            <div className = 'col-12'>
+              <form autoComplete='off'>
+                <textarea id = 'shippingAddress' className = {`col-12 form-control ${this.state.addressValidation.addressCheck}`} type='text' placeholder = 'Shipping Address' onChange = {this.handleChange} value = {this.state.shippingAddress}></textarea>
+                <div id='invalidAddress' className = {`col-12 ${this.state.addressValidation.addressValid}`}>Please input a valid address.</div>
+              </form>
+            </div>
+          </div>
+          <div className = 'submitRow row'>
+            <button className = 'btn btn-primary' onClick = {this.backToShop}>Continue Shopping</button>
+            <button className = 'placeOrder btn btn-success' type='submit' onClick={this.handleSubmit}>Place Order</button>
+          </div>
+        </div>
       </div>
     );
   }
