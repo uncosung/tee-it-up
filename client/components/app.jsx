@@ -82,14 +82,14 @@ export default class App extends React.Component {
       return (
         <div className = 'col-12'>
           <Header quantity = {this.state.quantity} added={this.state.added} setView = {this.setView} cart = {this.state.checkoutCart} updateQuantities = {this.updateQuantities}/>
-          <DemoEnd buyer={this.state.buyerInfo} cart={this.state.checkoutCart} price={this.state.price}/>
+          <DemoEnd setView = {this.setView} buyer={this.state.buyerInfo} cart={this.state.checkoutCart} price={this.state.price}/>
         </div>
       );
     } else {
       return (
         <div className = 'col-12'>
           <Header quantity = {this.state.quantity} added={this.state.added} setView = {this.setView} cart = {this.state.cart} updateQuantities = {this.updateQuantities}/>
-          <ProductDetails addToCart = {this.addToCart} backToList = {this.backToList} key={this.state.view.params} params={this.state.view.params} setView = {this.setView}/>
+          <ProductDetails addToCart = {this.addToCart} key={this.state.view.params} params={this.state.view.params} setView = {this.setView}/>
         </div>
       );
     }

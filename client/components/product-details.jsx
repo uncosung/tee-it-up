@@ -58,7 +58,7 @@ class ProductDetails extends React.Component {
             </Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={this.checkout}>
-                  Checkout
+                  Go To Cart
               </Button>
               <Button variant="secondary" onClick={this.backToList}>
                   Continue Shopping

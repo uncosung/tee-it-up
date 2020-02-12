@@ -30,7 +30,7 @@ class CartSummaryItem extends React.Component {
           </Modal.Header>
           <Modal.Body>Are you sure you want to remove this item from your cart?</Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={this.removeItem}>
+            <Button variant="danger" onClick={this.removeItem}>
                 Remove
             </Button>
             <Button variant="secondary" onClick={this.handleClose}>
@@ -53,7 +53,7 @@ class CartSummaryItem extends React.Component {
               {this.state.quantity}
               <i className="fas fa-plus-square pointer-hover ml-2" onClick={this.incrementQuantity}/>
               <br/>
-              <Button className = 'danger' onClick={this.handleOpen}>Remove</Button>
+              <Button variant = 'danger' onClick={this.handleOpen}>Remove</Button>
             </h5>
           </div>
         </div>
