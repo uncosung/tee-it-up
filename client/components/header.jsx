@@ -11,7 +11,7 @@ export default class Header extends React.Component {
     return (
       <nav className = 'header navbar navbar-expand-lg navbar-dark shadow fixed-top'>
         <div>
-          <a className = 'navbar-brand logo' href="#">
+          <a className = 'navbar-brand logo' href="#" onClick={() => { this.props.setView('catalog', {}); }}>
             <span>
               <i className="fas fa-golf-ball"></i>
             </span>
